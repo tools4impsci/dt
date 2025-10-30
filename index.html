@@ -1,371 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slideshow: The Triple Diamond for Social Impact</title>
+    <title>iSense Project: Design Thinking Timeline</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #e2e8f0; /* bg-slate-200 */
-            overflow: hidden; /* Prevent scrollbars */
+            font-family: 'Roboto', sans-serif;
         }
-
-        .slide {
-            display: none;
-            min-height: calc(100vh - 140px); /* Adjust for header/footer */
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            padding: 1rem;
-            box-sizing: border-box;
-        }
-
-        .slide.active {
-            display: flex;
-            opacity: 1;
-        }
-        
-        .diamond-svg {
+        .chart-container {
+            position: relative;
             width: 100%;
-            height: auto;
             max-width: 600px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
+            /* Explicit height for the Gantt chart, increased slightly for 5 clear rows */
+            height: 450px; 
+            max-height: 500px;
+        }
+        /* Mobile adjustment for charts */
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+
+        /* Custom styles for the horizontal scroll container */
+        .horizontal-scroll-container::-webkit-scrollbar {
+            height: 8px; /* Height of the horizontal scrollbar */
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-thumb {
+            background-color: #A38F6A; /* Gold color */
+            border-radius: 4px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-track {
+            background: #E5E7EB; /* Light gray track */
+            border-radius: 4px;
+        }
+        /* Hide scrollbar for Firefox */
+        .horizontal-scroll-container {
+            scrollbar-width: thin;
+            scrollbar-color: #A38F6A #E5E7EB;
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        /* Hide scrollbar for Safari and Chrome on mobile, but keep functionality */
+        .horizontal-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            /* Re-enable scrollbar for desktop for better usability */
+            .horizontal-scroll-container::-webkit-scrollbar {
+                display: block;
+            }
         }
     </style>
 </head>
+<body class="bg-gray-100 text-gray-800">
 
-<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-    <!-- Header Section -->
-    <header class="bg-slate-800 text-white p-4 shadow-lg fixed top-0 w-full z-10">
-        <div class="container mx-auto text-center">
-            <h1 class="text-xl md:text-2xl font-bold">Leveraging the Triple Diamond for Social Impact</h1>
-            <p class="text-sm text-slate-300 hidden md:block">Practicing Design Thinking for Social Change - SCWK8848</p>
-        </div>
-    </header>
+        <header class="text-center mb-12 border-b-4 border-b-[#A38F6A] pb-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2" style="color: #8C1D40;">The iSense Project Timeline</h1>
+            <p class="text-xl md:text-2xl text-gray-700">IDT x BCSSW</p>
+        </header>
 
-    <main id="slides-container" class="pt-20 pb-20">
+        <section class="mb-12">
+            <p class="text-lg text-center max-w-4xl mx-auto mb-10">
+                This project visualizes the six-week process for undergraduate teams tackling the "iSense challenge." The workflow strictly follows the five phases of Design Thinking, progressing from deep user understanding to tangible prototyping and a final presentation.
+            </p>
+            
+            <div class="w-full bg-white rounded-lg shadow-2xl p-6">
+                <h2 class="text-3xl font-semibold text-center mb-6" style="color: #8C1D40;">Project Phases & Duration (Gantt Chart)</h2>
+                <p class="text-center text-gray-700 mb-4">The core project timeline is organized by Design Thinking phases, showing exact week numbers and the associated dates for each activity. The timeline progresses chronologically from bottom to top.</p>
+                
+                <div class="chart-container" style="max-width: 100%; margin: 0 auto;">
+                    <canvas id="ganttChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Horizontal Scrolling Cards Section -->
+        <h2 class="text-3xl font-bold mb-6 pt-4" style="color: #8C1D40;">Design Thinking Phases in Detail</h2>
         
-        <!-- Slide 1: Title -->
-        <div class="slide active items-center justify-center">
-            <div class="text-center">
-                <h1 class="text-5xl font-bold text-slate-800 mb-4">Leveraging the Triple Diamond for Social Impact</h1>
-                <p class="text-2xl text-slate-600">Practicing Design Thinking for Social Change - SCWK8848</p>
-                 <svg class="w-64 h-64 mx-auto mt-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+        <!-- Scrolling Container -->
+        <main class="flex overflow-x-scroll pb-6 md:pb-10 space-x-6 px-2 horizontal-scroll-container snap-x snap-mandatory">
+            
+            <!-- Card 1: Phase 1 - Empathize (Wk 1) -->
+            <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <p class="text-sm font-medium text-[#A38F6A] mb-1">Week 1 (Oct 30)</p>
+                <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 1: Empathize / Discover</h2>
+                <p class="mb-4 text-gray-700">The initial step focuses on <strong>deep user immersion</strong> and understanding the patient's world. Teams work to step into the user's shoes and collect rich qualitative data.</p>
+                <h3 class="text-lg font-semibold mb-2" style="color: #A38F6A;">Key Activities</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                    <li>Human Ecosystem Mapping</li>
+                    <li>Conducting User Interviews</li>
+                    <li>Initial Problem Scoping</li>
+                </ul>
             </div>
-        </div>
 
-        <!-- Slide 2: Introduction -->
-        <div class="slide items-center justify-center">
-            <section id="introduction" class="container mx-auto max-w-4xl">
-                <div class="bg-white rounded-xl shadow-md p-6 lg:p-10">
-                    <h2 class="text-2xl font-semibold mb-4 border-b-2 border-red-500 pb-2">The Design Thinking Landscape</h2>
-                    <p class="mb-4 text-center text-lg font-medium">Why the Triple Diamond Framework is Essential for Social Impact</p>
-                    <div class="grid md:grid-cols-3 gap-6 text-center mt-6">
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Introduction</h3>
-                            <p>Developed by the UK Design Council, an evolution of the Double Diamond (Discover, Define, Develop, Deliver/Sustain).</p>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Why "Triple"?</h3>
-                            <p>Complex social problems are "wicked problems"—ill-defined, interconnected, and resistant to simple solutions. The third diamond is key to ensuring that the solution is equitable, ethical, and sustainable.</p>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Social Impact Goal</h3>
-                            <p>The framework provides a structured approach to move from ambiguity to actionable insights to sustainable change.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Slide 3: Principles -->
-        <div class="slide items-center justify-center">
-            <section id="principles" class="container mx-auto max-w-4xl">
-                 <div class="bg-white rounded-xl shadow-md p-6 lg:p-10">
-                    <h2 class="text-2xl font-semibold mb-4 border-b-2 border-purple-500 pb-2">Foundational Principles of HCD</h2>
-                    <div class="space-y-4 mt-6">
-                        <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <span class="text-purple-600 text-2xl font-bold">1.</span>
-                            <div>
-                                <h4 class="font-semibold text-lg text-slate-800">Empathy</h4>
-                                <p class="text-sm">Deep understanding of the community, context, power dynamics, and historical trauma. Moving beyond "user needs" to <em>community needs</em>.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <span class="text-purple-600 text-2xl font-bold">2.</span>
-                            <div>
-                                <h4 class="font-semibold text-lg text-slate-800">Collaboration</h4>
-                                <p class="text-sm">Co-design with affected individuals/groups, bringing together diverse perspectives (e.g., policy, non-profit, community members).</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <span class="text-purple-600 text-2xl font-bold">3.</span>
-                            <div>
-                                <h4 class="font-semibold text-lg text-slate-800">Iteration</h4>
-                                <p class="text-sm">Embrace failure as learning. Avoid implementing harmful solutions in fragile community settings. Test early and often.</p>
-                            </div>
-                        </div>
-                         <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <span class="text-purple-600 text-2xl font-bold">4.</span>
-                            <div>
-                                <h4 class="font-semibold text-lg text-slate-800">User-Centeredness</h4>
-                                <p class="text-sm">Focus on the strengths and existing capacities of the community, not just their deficits. This is an <em>asset-based approach</em>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Slide 4: Interactive Triple Diamond -->
-         <div class="slide items-center justify-center">
-            <section id="triple-diamond" class="container mx-auto max-w-4xl">
-                <div class="bg-white rounded-xl shadow-md p-6 lg:p-10 flex flex-col items-center">
-                    <h2 class="text-2xl font-semibold mb-4 border-b-2 border-amber-500 pb-2 self-start w-full">The Triple Diamond Process</h2>
-                    <svg class="diamond-svg my-4" viewBox="0 0 810 200" xmlns="http://www.w3.org/2000/svg">
-                        <g id="discover-diamond" class="cursor-pointer transition-transform duration-300 hover:scale-105">
-                            <polygon points="0,100 100,0 200,100 100,200" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-                            <text x="100" y="105" font-size="20" font-weight="bold" text-anchor="middle" fill="#854d0e" class="pointer-events-none">Discover</text>
-                        </g>
-                        <g id="define-diamond" class="cursor-pointer transition-transform duration-300 hover:scale-105">
-                            <polygon points="200,100 300,0 400,100 300,200" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-                            <text x="300" y="105" font-size="20" font-weight="bold" text-anchor="middle" fill="#854d0e" class="pointer-events-none">Define</text>
-                        </g>
-                        <g id="develop-diamond" class="cursor-pointer transition-transform duration-300 hover:scale-105">
-                            <polygon points="400,100 500,0 600,100 500,200" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-                            <text x="500" y="105" font-size="20" font-weight="bold" text-anchor="middle" fill="#854d0e" class="pointer-events-none">Develop</text>
-                        </g>
-                        <g id="sustain-diamond" class="cursor-pointer transition-transform duration-300 hover:scale-105">
-                             <polygon points="600,100 700,0 800,100 700,200" fill="#fef3c7" stroke="#b45309" stroke-width="2" />
-                             <text x="700" y="105" font-size="20" font-weight="bold" text-anchor="middle" fill="#854d0e" class="pointer-events-none">Sustain</text>
-                        </g>
-                    </svg>
-                    <div id="diamond-content" class="mt-4 p-6 bg-amber-50 rounded-lg w-full shadow-inner min-h-[120px]">
-                        <h3 id="content-title" class="text-xl font-bold mb-2 text-slate-800">Click a Diamond to Learn More</h3>
-                        <p id="content-text" class="text-gray-700">Explore each phase of the Triple Diamond process by clicking on the corresponding shape above.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Slide 5: Discover Phase -->
-        <div class="slide items-center justify-center">
-            <div id="discover-details" class="container mx-auto max-w-4xl">
-                 <div class="bg-white rounded-xl shadow-md p-6 lg:p-10">
-                    <h2 class="text-2xl font-semibold mb-4 border-b-2 border-green-500 pb-2">Diamond 1 - Discover</h2>
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Divergence: Research, Immersion, and Uncovering Root Causes</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Key Methods & Activities</h4>
-                            <ul class="list-disc pl-5 text-sm space-y-2 text-slate-700">
-                                <li><strong>Contextual Inquiry:</strong> Spend time where the problem exists, observe, and engage.</li>
-                                <li><strong>Journey Mapping:</strong> Map the current experience to identify pain points.</li>
-                                <li><strong>System Mapping:</strong> Analyze the broader ecosystem to understand systemic failures.</li>
-                                <li><strong>Key Informant Interviews:</strong> Hear first-hand accounts and perspectives.</li>
-                            </ul>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Output/Deliverable</h4>
-                            <ul class="list-disc pl-5 text-sm space-y-2 text-slate-700">
-                                <li>Comprehensive <strong>Problem & User Ecosystem Maps</strong>.</li>
-                                <li><strong>Affinity Diagrams</strong> and data synthesis.</li>
-                                <li>Initial <strong>Problem Hypotheses</strong>.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <!-- Card 2: Phase 2 - Define (Wk 2) -->
+            <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <p class="text-sm font-medium text-[#8C1D40] mb-1">Week 2 (Nov 6)</p>
+                <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 2: Define</h2>
+                <p class="mb-4 text-gray-700">This phase synthesizes the data collected. Teams shift from raw observations to creating a <strong>clear, actionable problem statement</strong> based on user needs.</p>
+                <h3 class="text-lg font-semibold mb-2" style="color: #A38F6A;">Key Deliverables</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                    <li>Patient Journey Mapping</li>
+                    <li>Refined Point of View (POV) Statement</li>
+                    <li>2-3 "How Might We..." Questions</li>
+                </ul>
             </div>
-        </div>
-
-        <!-- Slide 6: Define Phase -->
-        <div class="slide items-center justify-center">
-            <div id="define-details" class="container mx-auto max-w-4xl">
-                <div class="bg-white rounded-xl shadow-md p-6 lg:p-10">
-                    <h2 class="text-2xl font-semibold mb-4 border-b-2 border-blue-500 pb-2">Diamond 2 - Define</h2>
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Convergence: Synthesizing Insights and Defining a Focused Problem</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Key Methods & Activities</h4>
-                            <ul class="list-disc pl-5 text-sm space-y-2 text-slate-700">
-                                <li><strong>Persona Creation:</strong> Develop rich profiles to humanize the data.</li>
-                                <li><strong>"How Might We" Workshops:</strong> Translate insights into an actionable HMW question.</li>
-                                <li><strong>Ideation:</strong> Brainstorm a broad range of potential solutions.</li>
-                                <li><strong>Storyboarding:</strong> Visualize the future solution in action.</li>
-                            </ul>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Output/Deliverable</h4>
-                            <ul class="list-disc pl-5 text-sm space-y-2 text-slate-700">
-                                <li><strong>Community Personas</strong> and <strong>Journey Maps</strong>.</li>
-                                <li>The <strong>"How Might We" (HMW)</strong> statement.</li>
-                                <li>Clear <strong>Success Metrics</strong> defined with the community.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            
+            <!-- Card 3: Phase 3 - Ideate (Wk 3) -->
+            <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <p class="text-sm font-medium text-[#A38F6A] mb-1">Week 3 (Nov 13)</p>
+                <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 3: Ideate</h2>
+                <p class="mb-4 text-gray-700">A period of <strong>Divergent Thinking</strong>, generating a large quantity of diverse and creative solution ideas to the defined problem statement before converging on a single concept.</p>
+                <h3 class="text-lg font-semibold mb-2" style="color: #A38F6A;">Key Activities</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                    <li>Brainstorming by Sense/SCAMPER</li>
+                    <li>Dot Voting/Concept Convergence</li>
+                    <li>6-Panel Storyboarding of Final Concept</li>
+                </ul>
             </div>
-        </div>
 
-        <!-- Slide 7: Develop & Sustain -->
-        <div class="slide items-center justify-center">
-            <div id="develop-details" class="container mx-auto max-w-4xl">
-                <div class="bg-white rounded-xl shadow-md p-6 lg:p-10">
-                     <h2 class="text-2xl font-semibold mb-4 border-b-2 border-red-500 pb-2">Diamond 3 - Develop & Sustain</h2>
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Ideation, Experimentation, and Ethical Sustainment</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Key Methods & Activities</h4>
-                            <ul class="list-disc pl-5 text-sm space-y-2 text-slate-700">
-                                <li><strong>Rapid Prototyping:</strong> Build lo-fi versions of the solution (e.g., paper mockups).</li>
-                                <li><strong>User Testing:</strong> Gather feedback on prototypes to refine the design.</li>
-                                <li><strong>Feasibility & Viability Workshops:</strong> Ensure the solution is viable.</li>
-                                <li><strong>Implementation & Scale:</strong> Plan for phased rollout and sustainable funding.</li>
-                            </ul>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-lg shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Output/Deliverable</h4>
-                            <ul class="list-disc pl-5 text-sm space-y-2 text-slate-700">
-                                <li>A funnel of <strong>Conceptual Solutions</strong>.</li>
-                                <li><strong>Validated Minimum Viable Product (MVP)</strong>.</li>
-                                <li>A <strong>Governance Model</strong> (often community-led).</li>
-                                <li>A <strong>Sustainable Funding Model</strong>.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <!-- Card 4: Phase 4 - Prototype (Wk 4) -->
+            <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <p class="text-sm font-medium text-[#8C1D40] mb-1">Week 4 (Nov 20)</p>
+                <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 4: Prototype</h2>
+                <p class="mb-4 text-gray-700">Ideas are made tangible through a <strong>Maker Session</strong>. The focus is on low-fidelity prototypes designed for rapid learning, not polished final products.</p>
+                <h3 class="text-lg font-semibold mb-2" style="color: #A38F6A;">Key Deliverables</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                    <li>Low-Fidelity Physical Prototype</li>
+                    <li>Service Prototype (Role-playing)</li>
+                    <li>Initial Presentation Materials</li>
+                </ul>
             </div>
-        </div>
 
-        <!-- Slide 8: Conclusion -->
-        <div class="slide items-center justify-center">
-            <section id="conclusion" class="container mx-auto max-w-4xl">
-                <div class="bg-white rounded-xl shadow-md p-6 lg:p-10 text-center">
-                    <h2 class="text-2xl font-semibold mb-4 border-b-2 border-purple-500 pb-2">Critical Reflection</h2>
-                    <p class="text-xl font-bold my-4 text-slate-800">Practicing Design Thinking as Systemic Change</p>
-                    <div class="space-y-4 max-w-2xl mx-auto">
-                        <p class="text-lg">The Triple Diamond is not a linear checklist; it is an <strong>adaptive mindset</strong> that forces designers to embrace ambiguity and commit to continuous learning and co-creation.</p>
-                        <p class="text-lg">The <strong>quality of the solution is directly tied to the depth of the initial empathy and collaboration.</strong></p>
-                        <p class="font-bold mt-8 text-2xl text-slate-800">Thank You!</p>
-                    </div>
-                </div>
-            </section>
-        </div>
+            <!-- Card 5: Phase 5 - Test & Pitch (Wks 5-6) -->
+            <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <p class="text-sm font-medium text-[#A38F6A] mb-1">Weeks 5-6 (Nov 21 - Dec 4)</p>
+                <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 5: Test & Pitch</h2>
+                <p class="mb-4 text-gray-700">The final phase involves <strong>structured peer-to-peer testing</strong>, iterative refinement, and culminating in the final Pitch-A-Thon presentation to the stakeholders.</p>
+                <h3 class="text-lg font-semibold mb-2" style="color: #A38F6A;">Key Activities</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                    <li>"I Like / I Wish / What If" Feedback</li>
+                    <li>Final Prototype Refinement</li>
+                    <li>3-Minute Pitch Presentation (Pitch-A-Thon)</li>
+                </ul>
+            </div>
+        </main>
+        <!-- End Horizontal Scrolling Cards Section -->
 
-    </main>
-    
-    <!-- Footer/Navigation -->
-    <footer class="bg-slate-900 text-white p-4 fixed bottom-0 w-full z-10">
-        <div class="container mx-auto flex justify-between items-center">
-            <button id="prev-btn" class="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded-lg transition-colors">
-                Previous
-            </button>
-            <div id="slide-counter" class="text-sm">Slide 1 of 8</div>
-            <button id="next-btn" class="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded-lg transition-colors">
-                Next
-            </button>
-        </div>
-    </footer>
-    
+    </div>
+
     <script>
-        // --- Interactive Diamond Script ---
-        const discoverDiamond = document.getElementById('discover-diamond');
-        const defineDiamond = document.getElementById('define-diamond');
-        const developDiamond = document.getElementById('develop-diamond');
-        const sustainDiamond = document.getElementById('sustain-diamond');
-        const diamondContent = document.getElementById('diamond-content');
-        const contentTitle = document.getElementById('content-title');
-        const contentText = document.getElementById('content-text');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        const contentData = {
-            'discover-diamond': {
-                title: 'Discover Phase: Uncovering Root Causes',
-                text: 'This is the divergent phase where you immerse yourself in the problem space. Key methods include <strong>Ethnography</strong>, <strong>User Interviews</strong>, and <strong>System Mapping</strong> to visualize the complex ecosystem.'
-            },
-            'define-diamond': {
-                title: 'Define Phase: Framing the Challenge',
-                text: 'The convergent phase where you synthesize research. Methods include <strong>Affinity Mapping</strong>, <strong>Persona Creation</strong>, and <strong>Key Informant Workshops</strong> to craft an actionable "How Might We?" statement.'
-            },
-            'develop-diamond': {
-                title: 'Develop Phase: Ideation and Experimentation',
-                text: 'The second divergent phase focuses on generating solutions. Key methods include <strong>Brainstorming</strong>, <strong>Rapid Prototyping</strong> and <strong>User Testing</strong> to quickly validate concepts.'
-            },
-            'sustain-diamond': {
-                title: 'Sustain Phase: The Social Impact Imperative',
-                text: 'This is the crucial final phase for social impact. It is about ensuring long-term viability. Methods include creating a <strong>Governance Model</strong>, a <strong>Sustainable Funding Model</strong>, and a <strong>Phased Rollout Strategy</strong>.'
-            }
-        };
+            const tooltipTitleCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
 
-        function updateContent(diamondId) {
-            const data = contentData[diamondId];
-            if (data) {
-                contentTitle.textContent = data.title;
-                contentText.innerHTML = data.text;
-            }
-        }
-        
-        if(discoverDiamond) discoverDiamond.addEventListener('click', () => updateContent('discover-diamond'));
-        if(defineDiamond) defineDiamond.addEventListener('click', () => updateContent('define-diamond'));
-        if(developDiamond) developDiamond.addEventListener('click', () => updateContent('develop-diamond'));
-        if(sustainDiamond) sustainDiamond.addEventListener('click', () => updateContent('sustain-diamond'));
-        
-        // --- Slideshow Navigation Script ---
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const slideCounter = document.getElementById('slide-counter');
-        let currentSlide = 0;
-        
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
+            const ganttChartCtx = document.getElementById('ganttChart').getContext('2d');
+            new Chart(ganttChartCtx, {
+                type: 'bar',
+                data: {
+                    // Phases are now listed in ascending order
+                    labels: [
+                        'Discover & Define (Oct 30 - Nov 6)', 
+                        'Ideate (Nov 13)', 
+                        'Prototype & Test (Nov 20)', 
+                        'Iteration (Nov 21 - Dec 1)', 
+                        'Finalize & Present (Dec 2 - Dec 4)'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Preceding Time',
+                            data: [0, 2, 3, 4, 5], // Weeks before the task starts (0, 2, 3, 4, 5)
+                            backgroundColor: 'rgba(243, 244, 246, 0.8)', 
+                            borderColor: 'transparent',
+                            borderWidth: 0,
+                            stack: 'stack0',
+                            pointStyle: false,
+                        },
+                        {
+                            label: 'Phase Duration (Weeks)',
+                            data: [2, 1, 1, 1, 1], // Task duration (2, 1, 1, 1, 1)
+                            backgroundColor: [
+                                '#8C1D40', // Discover & Define (Maroon)
+                                '#A38F6A', // Ideate (Gold)
+                                '#8C1D40', // Prototype & Test (Maroon)
+                                'rgba(163, 143, 106, 0.6)', // Iteration (Lighter Gold)
+                                '#8C1D40'  // Finalize & Present (Maroon)
+                            ],
+                            borderColor: [
+                                '#6B1731', 
+                                '#927E58',
+                                '#6B1731', 
+                                '#927E58', 
+                                '#6B1731'
+                            ],
+                            borderWidth: 1,
+                            stack: 'stack0',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', 
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 6,
+                            ticks: {
+                                stepSize: 1,
+                                callback: function(value, index, values) {
+                                    return 'Week ' + value;
+                                }
+                            },
+                            stacked: true,
+                            grid: {
+                                drawOnChartArea: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Project Week',
+                                color: '#8C1D40'
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                            ticks: {
+                                color: '#374151'
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...tooltipTitleCallback.plugins,
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    if (context.datasetIndex === 1) {
+                                        return context.dataset.label + ': ' + context.parsed.x + ' Week(s)';
+                                    }
+                                    return null;
+                                },
+                                title: function(tooltipItems) {
+                                    return tooltipItems[0].label;
+                                }
+                            }
+                        }
+                    }
+                }
             });
 
-            if (slides[index]) {
-                slides[index].classList.add('active');
-            }
-            
-            slideCounter.textContent = `Slide ${index + 1} of ${slides.length}`;
-            
-            // Update button states
-            prevBtn.disabled = index === 0;
-            nextBtn.disabled = index === slides.length - 1;
-        }
-
-        function nextSlide() {
-            if (currentSlide < slides.length - 1) {
-                currentSlide++;
-                showSlide(currentSlide);
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                showSlide(currentSlide);
-            }
-        }
-
-        // Event Listeners
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
         });
-
-        // Initial setup
-        showSlide(currentSlide);
     </script>
 </body>
-
 </html>
