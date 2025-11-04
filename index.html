@@ -47,8 +47,10 @@
             -ms-overflow-style: none; /* IE and Edge */
         }
         /* Hide scrollbar for Safari and Chrome on mobile, but keep functionality */
-        .horizontal-scroll-container::-webkit-scrollbar {
-            display: none;
+        @media (max-width: 767px) {
+            .horizontal-scroll-container::-webkit-scrollbar {
+                display: none;
+            }
         }
         @media (min-width: 768px) {
             /* Re-enable scrollbar for desktop for better usability */
@@ -111,6 +113,10 @@
                     <li>Patient Journey Mapping</li>
                     <li>Refined Point of View (POV) Statement</li>
                     <li>2-3 "How Might We..." Questions</li>
+                </ul>
+            </div> <!-- FIX: Closed Card 2 div -->
+
+            <!-- Card 3: Phase 3 - Ideate (Wk 2) --> <!-- FIX: Moved comment and div to be sequential, not nested -->
             <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
                 <p class="text-sm font-medium text-[#A38F6A] mb-1">Week 2 (Nov 13)</p>
                 <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 3: Ideate</h2>
@@ -123,7 +129,7 @@
                 </ul>
             </div>
 
-            <!-- Card 4: Phase 3 - Prototype (Wk 4) -->
+            <!-- Card 4: Phase 4 - Prototype (Wk 4) -->
             <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
                 <p class="text-sm font-medium text-[#8C1D40] mb-1">Week 4 (Nov 20)</p>
                 <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 4: Prototype</h2>
@@ -136,7 +142,7 @@
                 </ul>
             </div>
 
-            <!-- Card 5: Phase 4 - Test & Pitch (Wks 5-6) -->
+            <!-- Card 5: Phase 5 - Test & Pitch (Wks 5-6) -->
             <div class="flex-shrink-0 w-full md:w-80 min-w-[300px] snap-start bg-white rounded-xl shadow-xl p-6 transform hover:scale-[1.02] transition-transform duration-300">
                 <p class="text-sm font-medium text-[#A38F6A] mb-1">Weeks 5-6 (Nov 21 - Dec 4)</p>
                 <h2 class="text-2xl font-bold mb-3" style="color: #8C1D40;">Phase 5: Test & Pitch</h2>
